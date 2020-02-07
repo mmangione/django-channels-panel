@@ -1,7 +1,7 @@
 from django.apps import AppConfig, apps
 from django.conf import settings
 
-from channels.asgi import channel_layers
+from channels.layers import channel_layers
 from channels import DEFAULT_CHANNEL_LAYER
 
 from . import routes, GROUP_NAME_CHANNELS
