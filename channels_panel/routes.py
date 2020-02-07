@@ -1,4 +1,4 @@
-from channels.generic.websockets import WebsocketConsumer
+from channels.generic.websocket import WebsocketConsumer
 
 from . import GROUP_NAME_CHANNELS, GROUP_NAME_GROUPS, GROUP_PREFIX, _MARK
 
