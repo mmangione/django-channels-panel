@@ -7,7 +7,8 @@ from functools import wraps
 
 from django.core.serializers.json import DjangoJSONEncoder
 
-from channels import Group, DEFAULT_CHANNEL_LAYER
+from channels import DEFAULT_CHANNEL_LAYER
+from channels.consumer import get_channel_layer
 from channels.utils import name_that_thing
 
 from . import GROUP_NAME_GROUPS, GROUP_PREFIX, _MARK
@@ -26,7 +27,7 @@ class MessageJSONEncoder(DjangoJSONEncoder):
 
 
 def send_debug(data, event, group=GROUP_NAME_GROUPS):
-    Group(group).send({'text': json.dumps({'data': data, 'event': event, _MARK: _MARK}, cls=MessageJSONEncoder)})
+    get_channel_layer(group).send({'text': json.dumps({'data': data, 'event': event, _MARK: _MARK}, cls=MessageJSONEncoder)})
 
 
 def is_marked(message):
