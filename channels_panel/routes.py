@@ -1,4 +1,5 @@
 from channels.generic.websocket import WebsocketConsumer
+from django.urls import re_path
 
 from . import GROUP_NAME_CHANNELS, GROUP_NAME_GROUPS, GROUP_PREFIX, _MARK
 
@@ -18,5 +19,5 @@ class DebugGroupsConsumer(WebsocketConsumer):
 
 
 debug_channel_routes = [
-    DebugGroupsConsumer.as_route(path='^/__debug__/join/(?P<group>[^/]+)/?$')
+    re_path('^/__debug__/join/(?P<group>[^/]+)/?$', DebugGroupsConsumer.as_asgi())
 ]
